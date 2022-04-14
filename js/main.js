@@ -5,7 +5,7 @@ let width = document.getElementById('map').clientWidth,
 
 document.getElementById('map').style.height = height + 'px';
 
-d3.json('../data/ne_110m_admin_0_countries_lakes.json', function(error,worldTopojson) {
+d3.json('https://raw.githubusercontent.com/CarlosMunozDiaz/test_mapa_latam/main/data/ne_110m_admin_0_countries_lakes.json', function(error,worldTopojson) {
     if (error) throw error;
 
     let worldGeojson = topojson.feature(worldTopojson, worldTopojson.objects.ne_110m_admin_0_countries_lakes);
