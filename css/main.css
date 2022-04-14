@@ -1,0 +1,214 @@
+* {
+    margin: 0 auto;
+}
+
+body {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+/* BLOQUE PADRE */
+.container {
+    width: 100%;
+    max-width: 768px;
+    height: 592px; /* Dar más espacios para versiones móviles */
+    margin: 0px auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.title {
+    font-size: 22px;
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.map {
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    margin: 12px auto 0px auto;
+
+    position: relative;
+}
+
+.source {
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* LEYENDA */
+.legend {
+    /* Disposición de elementos */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.legend--item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 15px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 10px;    
+
+    padding-left: 20px;
+    margin-right: 16px;
+    margin-top: 12px; /* Incorporamos aquí este atributo y no 'chart__legend' para que en dispositivos móviles funcione correctamente el flex-wrap */
+}
+
+.legend--item:last-child {
+    margin-right: 0px;
+}
+
+.legend--item:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: #ccc; /* Este es el atributo a modificar */
+}
+
+.legend--item.first:before {
+    background-color: #005578;
+}
+
+.legend--item.second:before {
+    background-color: #FFB612;
+}
+
+/* TOOLTIP */
+.chart__tooltip {
+    position: fixed;
+    
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    width: 290px;
+    height: auto;
+    max-height: 232px;
+    background-color: #F4F4F4;
+
+    /* Este elemento se modifica de forma dinámica desde JS */
+    opacity: 0;
+    z-index: -1;
+}
+
+.chart__tooltip.visible {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 1s ease-in;
+}
+
+.chart__tooltip--close {
+    position: absolute;
+    top: 0;
+    right: 0%;
+    transform: translate(50%,-50%);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #6e6e6e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.chart__tooltip--close img {
+    max-width: 100%;
+    height: auto;
+}
+
+.chart__tooltip--content {
+    padding: 0px 8px 8px 8px;
+    margin: 16px 0px 0px 0px;
+    height: auto;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.chart__tooltip--title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1.1;
+    color: #000;
+}
+
+.chart__tooltip--text {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.1;
+    color: #000;
+
+    margin-top: 4px;
+}
+
+.data-source {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.data-source .strong {
+    font-weight: 700;
+}
+
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+    width: 7.5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #262626; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #262626; 
+}
+
+@media only screen and (max-width: 525px) {
+    /* Adaptando el bloque exterior se adapta el bloque interior */
+    .outer-chart {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0px 8px;
+    }
+
+    .chart__sb-title {width: 100%;}
+    .chart__b-select {text-align: start;}
+    .chart__select, .chart__select--double {width: 100%;}
+    .chart__b-switch {justify-content: center;}
+    .chart__select--double:first-child {margin-right: 0px;}
+
+    .chart__b-title--together {flex-direction: column; align-items: initial;}
+    .chart__b-title--together .chart__b-select, .chart__b-title--together .chart__b-switch {margin-top: 8px;}
+
+    .chart__legend {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+}
