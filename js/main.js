@@ -16,7 +16,7 @@ d3.queue()
         let worldGeojson = topojson.feature(mapa, mapa.objects.ne_110m_admin_0_countries_lakes);
         let worldGeojsonInner = topojson.mesh(mapa, mapa.objects.ne_110m_admin_0_countries_lakes, (a, b) => a !== b);
 
-        const features = worldGeojson.features.filter(d => d.properties.CONTINENT.includes("America") && !["Canadá", "Groenlandia", "Estados Unidos"].includes(d.properties.ADMIN));
+        const features = worldGeojson.features.filter(d => d.properties.CONTINENT.includes("América") && !["Canadá", "Groenlandia", "Estados Unidos"].includes(d.properties.ADMIN));
         
         let laGeojson = {type: 'FeatureCollection', features};
 
