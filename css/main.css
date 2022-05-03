@@ -10,7 +10,7 @@ body {
 .container {
     width: 100%;
     max-width: 768px;
-    height: 592px; /* Dar más espacios para versiones móviles */
+    height: 572px; /* Dar más espacios para versiones móviles */
     margin: 0px auto;
 
     display: flex;
