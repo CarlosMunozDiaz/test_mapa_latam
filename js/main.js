@@ -74,7 +74,7 @@ d3.queue()
             .on('click', function(d,i,e) {
                 let html = '<p class="chart__tooltip--title"> ' + d.properties.ADMIN + '</p>';
                 for(let i = 0; i < d.data.length; i++) {
-                    html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https:www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
+                    html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
                 }
                 document.getElementById('tooltip-content').innerHTML = html;
 
