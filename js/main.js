@@ -71,7 +71,7 @@ d3.queue()
             .attr("class", "country-yes")
             .attr("fill", '#113678')
             .attr("d", path)
-            .on('click', function(d,i,e) {
+            .on('click touchstart', function(d,i,e) {
                 d3.event.preventDefault();
                 d3.event.stopPropagation();
                 //Tooltip
