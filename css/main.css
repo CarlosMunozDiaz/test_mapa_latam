@@ -36,6 +36,10 @@ body {
     position: relative;
 }
 
+.map .country-yes {
+    cursor: pointer;
+}
+
 .source {
     font-size: 16px;
     margin-top: 8px;
@@ -140,20 +144,29 @@ body {
     overflow-y: auto;
 }
 
+.chart__tooltip--content a {
+    font-size: 14px;
+    font-weight: 400;
+}
+
 .chart__tooltip--title {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
-    line-height: 1.1;
-    color: #000;
+    color: #262626;
+    text-decoration: underline;
+}
+
+.chart__tooltip_b-text {
+    margin-top: 12px;
 }
 
 .chart__tooltip--text {
     font-style: normal;
-    font-weight: 300;
-    font-size: 16px;
+    font-weight: 700;
+    font-size: 14px;
     line-height: 1.1;
-    color: #000;
+    color: #262626;
 
     margin-top: 4px;
 }
