@@ -15,9 +15,6 @@ d3.queue()
     .await(function(error, mapa, data) {
         if(error) throw error; 
 
-        //Lógica de prueba
-        let lastEvent = '';
-
         //Mapa
         let worldGeojson = topojson.feature(mapa, mapa.objects.ne_110m_admin_0_countries_lakes);
         let worldGeojsonInner = topojson.mesh(mapa, mapa.objects.ne_110m_admin_0_countries_lakes, (a, b) => a !== b);
@@ -83,22 +80,7 @@ d3.queue()
             .attr("class", "country-yes")
             .attr("fill", '#113678')
             .attr("d", path)
-            .on('click', function(d,i,e) {
-
-                // alert(d3.event.pointerType, lastEvent);
-
-                // if(d3.event.pointerType != 'mouse') {
-
-                //     if (lastEvent != 'zoom') {
-
-                //         lastEvent = 'touch';
-
-                //         drawTooltip();
-                //     }
-
-                // } else {
-                //     drawTooltip();
-                // }
+            .on('mousemove', function(d,i,e) {
 
                 drawTooltip();
 
@@ -161,8 +143,8 @@ d3.queue()
         svg.call(zoom);
 
         function zoomed() {
-            lastEvent = 'zoom';
             g.selectAll('path').attr('transform', d3.event.transform);
+            tooltip.classed('visible',false);
         }
 
 
