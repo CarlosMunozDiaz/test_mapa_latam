@@ -83,22 +83,24 @@ d3.queue()
             .attr("class", "country-yes")
             .attr("fill", '#113678')
             .attr("d", path)
-            .on('click touchstart', function(d,i,e) {
+            .on('click', function(d,i,e) {
 
-                alert(d3.event.pointerType, lastEvent);
+                // alert(d3.event.pointerType, lastEvent);
 
-                if(d3.event.pointerType != 'mouse') {
+                // if(d3.event.pointerType != 'mouse') {
 
-                    if (lastEvent != 'zoom') {
+                //     if (lastEvent != 'zoom') {
 
-                        lastEvent = 'touch';
+                //         lastEvent = 'touch';
 
-                        drawTooltip();
-                    }
+                //         drawTooltip();
+                //     }
 
-                } else {
-                    drawTooltip();
-                }
+                // } else {
+                //     drawTooltip();
+                // }
+
+                drawTooltip();
 
                 function drawTooltip() {
                     d3.event.preventDefault();
