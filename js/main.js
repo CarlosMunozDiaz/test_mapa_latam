@@ -15,6 +15,9 @@ d3.queue()
     .await(function(error, mapa, data) {
         if(error) throw error; 
 
+        //Lógica de prueba
+        let lastEvent = '';
+
         //Mapa
         let worldGeojson = topojson.feature(mapa, mapa.objects.ne_110m_admin_0_countries_lakes);
         let worldGeojsonInner = topojson.mesh(mapa, mapa.objects.ne_110m_admin_0_countries_lakes, (a, b) => a !== b);
@@ -80,42 +83,60 @@ d3.queue()
             .attr("class", "country-yes")
             .attr("fill", '#113678')
             .attr("d", path)
-            .on('click touchend', function(d,i,e) {
-                d3.event.preventDefault();
-                d3.event.stopPropagation();
+            .on('click touchstart', function(d,i,e) {
 
-                //Tooltip
-                let html = '';
+                alert(d3.event.pointerType, lastEvent);
 
-                //Título + Tipos
-                html += '<div class="chart__tooltip--b_title"><p class="chart__tooltip--title">' + d.properties.ADMIN + '</p>';
+                if(d3.event.pointerType != 'mouse') {
 
-                //Bucle para sus tipos
-                html += '<div class="chart__tooltip--b_types">';
-                let tipos = d.data[0].tipos.split('|');
-                for(let i = 0; i < tipos.length; i++) {
-                    if(tipos[i] == 'tipo1'){
-                        html += '<span class="chart__tooltip--type tipo1"></span>';
-                    } else if (tipos[i] == 'tipo2') {
-                        html += '<span class="chart__tooltip--type tipo2"></span>';
-                    } else if (tipos[i] == 'tipo3') {
-                        html += '<span class="chart__tooltip--type tipo3"></span>';
-                    } else if (tipos[i] == 'tipo4') {
-                        html += '<span class="chart__tooltip--type tipo4"></span>';
-                    } else {
-                        html += '<span class="chart__tooltip--type tipo5"></span>';
+                    if (lastEvent != 'zoom') {
+
+                        lastEvent = 'touch';
+
+                        drawTooltip();
                     }
+
+                } else {
+                    drawTooltip();
                 }
 
-                html += '</div></div>';
-                
-                //Bucle para enlaces
-                for(let i = 0; i < d.data.length; i++) {
-                    html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https://www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
-                }
-                document.getElementById('tooltip-content').innerHTML = html;
+                function drawTooltip() {
+                    d3.event.preventDefault();
+                    d3.event.stopPropagation();
 
-                tooltip.classed('visible', true);
+                    //Tooltip
+                    let html = '';
+
+                    //Título + Tipos
+                    html += '<div class="chart__tooltip--b_title"><p class="chart__tooltip--title">' + d.properties.ADMIN + '</p>';
+
+                    //Bucle para sus tipos
+                    html += '<div class="chart__tooltip--b_types">';
+                    let tipos = d.data[0].tipos.split('|');
+                    for(let i = 0; i < tipos.length; i++) {
+                        if(tipos[i] == 'tipo1'){
+                            html += '<span class="chart__tooltip--type tipo1"></span>';
+                        } else if (tipos[i] == 'tipo2') {
+                            html += '<span class="chart__tooltip--type tipo2"></span>';
+                        } else if (tipos[i] == 'tipo3') {
+                            html += '<span class="chart__tooltip--type tipo3"></span>';
+                        } else if (tipos[i] == 'tipo4') {
+                            html += '<span class="chart__tooltip--type tipo4"></span>';
+                        } else {
+                            html += '<span class="chart__tooltip--type tipo5"></span>';
+                        }
+                    }
+
+                    html += '</div></div>';
+                    
+                    //Bucle para enlaces
+                    for(let i = 0; i < d.data.length; i++) {
+                        html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https://www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
+                    }
+                    document.getElementById('tooltip-content').innerHTML = html;
+
+                    tooltip.classed('visible', true);
+                }                
             });
         
         //Países sin datos
@@ -138,6 +159,7 @@ d3.queue()
         svg.call(zoom);
 
         function zoomed() {
+            lastEvent = 'zoom';
             g.selectAll('path').attr('transform', d3.event.transform);
         }
 

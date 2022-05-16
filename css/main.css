@@ -142,6 +142,8 @@ body {
 .chart__tooltip--close img {
     max-width: 100%;
     height: auto;
+
+    pointer-events: none;
 }
 
 /* Contenido */
