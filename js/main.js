@@ -5,6 +5,9 @@ let width = document.getElementById('map').clientWidth,
 
 document.getElementById('map').style.height = height + 'px';
 
+//Colores
+const tipo1 = '', tipo2 = '', tipo3 = '', tipo4 = '', tipo5 = '';
+
 ///Desarrollo del mapa
 d3.queue()
     .defer(d3.json, 'https://raw.githubusercontent.com/CarlosMunozDiaz/test_mapa_latam/main/data/ne_110m_admin_0_countries_lakes.json')
@@ -25,6 +28,10 @@ d3.queue()
             .fitSize([width - 1, height], laGeojson);
 
         let path = d3.geoPath(projection);
+
+        const zoom = d3.zoom()
+            .scaleExtent([1, 5])
+            .on('zoom', zoomed);
 
         //Datos
         let features1 = [], features2 = [];
@@ -50,21 +57,21 @@ d3.queue()
         let laWith = {type: 'FeatureCollection', features: features1};
         let laWithout = {type: 'FeatureCollection', features: features2};
 
-        console.log(laGeojson, laWith, laWithout);
-
         const svg = d3.select('#map')
             .append('svg')
             .attr("width", width - 1)
             .attr("height", height);
+
+        const g = svg.append('g');
     
-        svg.append("path")
+        g.append("path")
             .datum(d3.geoGraticule())
             .attr("d", path)
             .attr("fill", "none")
             .attr("stroke", "#f0f0f0");
 
         //Países con datos
-        svg.selectAll("country")
+        g.selectAll("country")
             .data(laWith.features)
             .enter()
             .append("path")
@@ -85,29 +92,27 @@ d3.queue()
             });
         
         //Países sin datos
-        svg.selectAll("country")
+        g.selectAll("country")
             .data(laWithout.features)
             .enter()
             .append("path")
             .attr("class", "country-none")
             .attr("fill", '#d9d9d9')
             .attr("d", path);
-
-        //Todos
-        // svg.selectAll(".country")
-        //     .data(laGeojson.features)
-        //     .enter()
-        //     .append("path")
-        //     .attr("class", "country")
-        //     .attr("fill", 'red')
-        //     .attr("d", path);
         
         //Otros
-        svg.append("path")
+        g.append("path")
             .datum(worldGeojsonInner)
             .attr("fill", "none")
             .attr("stroke", "#c3c3c3")
             .attr("d", path);
+
+        //Zoom
+        svg.call(zoom);
+
+        function zoomed() {
+            g.selectAll('path').attr('transform', d3.event.transform);
+        }
 
 
         //Cuando se clique en la cruz de cierre, cerramos el tooltip
