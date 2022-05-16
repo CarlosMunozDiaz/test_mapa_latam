@@ -33,6 +33,8 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+
+    flex-wrap: wrap;
 }
 
 .legend--item {
@@ -108,7 +110,7 @@ body {
     width: 290px;
     height: auto;
     max-height: 232px;
-    background-color: #F4F4F4;
+    background-color: #f2f2f2;
 
     /* Este elemento se modifica de forma dinámica desde JS */
     opacity: 0;
@@ -143,6 +145,7 @@ body {
     height: auto;
 }
 
+/* Contenido */
 .chart__tooltip--content {
     padding: 0px 8px 8px 8px;
     margin: 16px 0px 0px 0px;
@@ -157,7 +160,7 @@ body {
 }
 
 /* Textos */
-.chart__tooltip-b_title {
+.chart__tooltip--b_title {
     display: flex;
     justify-content: flex-start;
 }
@@ -169,22 +172,45 @@ body {
     color: #262626;
     text-decoration: underline;
 
-    margin-right: 6px;
+    margin-right: 12px;
 }
 
 .chart__tooltip--b_types {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
 }
 
 .chart__tooltip--type {
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
 
-    margin-right: 4px;
+    margin-right: 6px;
+}
 
-    background-color: red;
+.chart__tooltip--type.tipo1 {
+    background-color: ;
+}
+
+.chart__tooltip--type.tipo1 {
+    background-color: #2E86AB;
+}
+
+.chart__tooltip--type.tipo2 {
+    background-color: #F6F5AE;
+}
+
+.chart__tooltip--type.tipo3 {
+    background-color: #F24236;
+}
+
+.chart__tooltip--type.tipo4 {
+    background-color: #73BFB8;
+}
+
+.chart__tooltip--type.tipo5 {
+    background-color: #F5F749;
 }
 
 .chart__tooltip_b-text {

@@ -92,8 +92,19 @@ d3.queue()
 
                 //Bucle para sus tipos
                 html += '<div class="chart__tooltip--b_types">';
-                for(let i = 0; i < d.data[0].tipos.length; i++) {
-                    console.log(d);
+                let tipos = d.data[0].tipos.split('|');
+                for(let i = 0; i < tipos.length; i++) {
+                    if(tipos[i] == 'tipo1'){
+                        html += '<span class="chart__tooltip--type tipo1"></span>';
+                    } else if (tipos[i] == 'tipo2') {
+                        html += '<span class="chart__tooltip--type tipo2"></span>';
+                    } else if (tipos[i] == 'tipo3') {
+                        html += '<span class="chart__tooltip--type tipo3"></span>';
+                    } else if (tipos[i] == 'tipo4') {
+                        html += '<span class="chart__tooltip--type tipo4"></span>';
+                    } else {
+                        html += '<span class="chart__tooltip--type tipo5"></span>';
+                    }
                 }
 
                 html += '</div></div>';
