@@ -80,7 +80,7 @@ d3.queue()
             .attr("class", "country-yes")
             .attr("fill", '#113678')
             .attr("d", path)
-            .on('click touchstart', function(d,i,e) {
+            .on('click touchend', function(d,i,e) {
                 d3.event.preventDefault();
                 d3.event.stopPropagation();
 
@@ -145,6 +145,7 @@ d3.queue()
         //Cuando se clique en la cruz de cierre, cerramos el tooltip
         document.getElementById('tooltip-close').addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
 
             tooltip.classed('visible',false);
         });
