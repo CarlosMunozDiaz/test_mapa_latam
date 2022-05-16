@@ -98,56 +98,9 @@ body {
     margin-top: 8px;
 }
 
-/* LEYENDA */
-.legend {
-    /* Disposición de elementos */
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-.legend--item {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 15px;
-
-    font-style: normal;
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 10px;    
-
-    padding-left: 20px;
-    margin-right: 16px;
-    margin-top: 12px; /* Incorporamos aquí este atributo y no 'chart__legend' para que en dispositivos móviles funcione correctamente el flex-wrap */
-}
-
-.legend--item:last-child {
-    margin-right: 0px;
-}
-
-.legend--item:before {
-    position: absolute;
-    content: '';
-    top: 0;
-    left: 0;
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #ccc; /* Este es el atributo a modificar */
-}
-
-.legend--item.first:before {
-    background-color: #005578;
-}
-
-.legend--item.second:before {
-    background-color: #FFB612;
-}
-
 /* TOOLTIP */
 .chart__tooltip {
-    position: fixed;
+    position: absolute;
     
     top: 50%;
     left: 50%;
@@ -162,6 +115,7 @@ body {
     z-index: -1;
 }
 
+/* Estados */
 .chart__tooltip.visible {
     opacity: 1;
     z-index: 1;
@@ -202,12 +156,35 @@ body {
     font-weight: 400;
 }
 
+/* Textos */
+.chart__tooltip-b_title {
+    display: flex;
+    justify-content: flex-start;
+}
+
 .chart__tooltip--title {
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     color: #262626;
     text-decoration: underline;
+
+    margin-right: 6px;
+}
+
+.chart__tooltip--b_types {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.chart__tooltip--type {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+
+    margin-right: 4px;
+
+    background-color: red;
 }
 
 .chart__tooltip_b-text {
@@ -222,15 +199,6 @@ body {
     color: #262626;
 
     margin-top: 4px;
-}
-
-.data-source {
-    font-size: 12px;
-    font-weight: 300;
-}
-
-.data-source .strong {
-    font-weight: 700;
 }
 
 /* SCROLLBAR */
@@ -254,27 +222,4 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #262626; 
-}
-
-@media only screen and (max-width: 525px) {
-    /* Adaptando el bloque exterior se adapta el bloque interior */
-    .outer-chart {
-        box-sizing: border-box;
-        width: 100%;
-        padding: 0px 8px;
-    }
-
-    .chart__sb-title {width: 100%;}
-    .chart__b-select {text-align: start;}
-    .chart__select, .chart__select--double {width: 100%;}
-    .chart__b-switch {justify-content: center;}
-    .chart__select--double:first-child {margin-right: 0px;}
-
-    .chart__b-title--together {flex-direction: column; align-items: initial;}
-    .chart__b-title--together .chart__b-select, .chart__b-title--together .chart__b-switch {margin-top: 8px;}
-
-    .chart__legend {
-        justify-content: flex-start;
-        flex-wrap: wrap;
-    }
 }

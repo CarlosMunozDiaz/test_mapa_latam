@@ -31,6 +31,8 @@ d3.queue()
 
         const zoom = d3.zoom()
             .scaleExtent([1, 5])
+            .translateExtent([[0,0], [width, height]])
+            .extent([[0, 0], [width, height]])
             .on('zoom', zoomed);
 
         //Datos
@@ -81,8 +83,22 @@ d3.queue()
             .on('click touchstart', function(d,i,e) {
                 d3.event.preventDefault();
                 d3.event.stopPropagation();
+
                 //Tooltip
-                let html = '<p class="chart__tooltip--title"> ' + d.properties.ADMIN + '</p>';
+                let html = '';
+
+                //Título + Tipos
+                html += '<div class="chart__tooltip--b_title"><p class="chart__tooltip--title">' + d.properties.ADMIN + '</p>';
+
+                //Bucle para sus tipos
+                html += '<div class="chart__tooltip--b_types">';
+                for(let i = 0; i < d.data[0].tipos.length; i++) {
+                    console.log(d);
+                }
+
+                html += '</div></div>';
+                
+                //Bucle para enlaces
                 for(let i = 0; i < d.data.length; i++) {
                     html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https://www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
                 }
