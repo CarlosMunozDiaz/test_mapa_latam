@@ -87,13 +87,13 @@ d3.queue()
                 .attr("d", path)
                 .on('pointerdown', function(d,i,e) {
                     drawTooltip(d);                               
-                });
-
-        
+                });        
 
         function drawTooltip(d) {
             d3.event.preventDefault();
             d3.event.stopPropagation();
+
+            tooltip.classed('visible', true);
 
             //Tooltip
             let html = '';
@@ -125,8 +125,6 @@ d3.queue()
                 html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https://www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
             }
             document.getElementById('tooltip-content').innerHTML = html;
-
-            tooltip.classed('visible', true);
         }        
         
         //Países sin datos
