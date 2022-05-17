@@ -73,55 +73,61 @@ d3.queue()
             .attr("stroke", "#f0f0f0");
 
         //Países con datos
+
+        let isMobile = window.matchMedia("only screen and (max-width: 820px)").matches;
+
+        console.log(isMobile);
+
         g.selectAll("country")
-            .data(laWith.features)
-            .enter()
-            .append("path")
-            .attr("class", "country-yes")
-            .attr("fill", '#113678')
-            .attr("d", path)
-            .on('mousemove', function(d,i,e) {
+                .data(laWith.features)
+                .enter()
+                .append("path")
+                .attr("class", "country-yes")
+                .attr("fill", '#113678')
+                .attr("d", path)
+                .on('pointerdown', function(d,i,e) {
+                    drawTooltip(d);                               
+                });
 
-                drawTooltip();
+        
 
-                function drawTooltip() {
-                    d3.event.preventDefault();
-                    d3.event.stopPropagation();
+        function drawTooltip(d) {
+            d3.event.preventDefault();
+            d3.event.stopPropagation();
 
-                    //Tooltip
-                    let html = '';
+            //Tooltip
+            let html = '';
 
-                    //Título + Tipos
-                    html += '<div class="chart__tooltip--b_title"><p class="chart__tooltip--title">' + d.properties.ADMIN + '</p>';
+            //Título + Tipos
+            html += '<div class="chart__tooltip--b_title"><p class="chart__tooltip--title">' + d.properties.ADMIN + '</p>';
 
-                    //Bucle para sus tipos
-                    html += '<div class="chart__tooltip--b_types">';
-                    let tipos = d.data[0].tipos.split('|');
-                    for(let i = 0; i < tipos.length; i++) {
-                        if(tipos[i] == 'tipo1'){
-                            html += '<span class="chart__tooltip--type tipo1"></span>';
-                        } else if (tipos[i] == 'tipo2') {
-                            html += '<span class="chart__tooltip--type tipo2"></span>';
-                        } else if (tipos[i] == 'tipo3') {
-                            html += '<span class="chart__tooltip--type tipo3"></span>';
-                        } else if (tipos[i] == 'tipo4') {
-                            html += '<span class="chart__tooltip--type tipo4"></span>';
-                        } else {
-                            html += '<span class="chart__tooltip--type tipo5"></span>';
-                        }
-                    }
+            //Bucle para sus tipos
+            html += '<div class="chart__tooltip--b_types">';
+            let tipos = d.data[0].tipos.split('|');
+            for(let i = 0; i < tipos.length; i++) {
+                if(tipos[i] == 'tipo1'){
+                    html += '<span class="chart__tooltip--type tipo1"></span>';
+                } else if (tipos[i] == 'tipo2') {
+                    html += '<span class="chart__tooltip--type tipo2"></span>';
+                } else if (tipos[i] == 'tipo3') {
+                    html += '<span class="chart__tooltip--type tipo3"></span>';
+                } else if (tipos[i] == 'tipo4') {
+                    html += '<span class="chart__tooltip--type tipo4"></span>';
+                } else {
+                    html += '<span class="chart__tooltip--type tipo5"></span>';
+                }
+            }
 
-                    html += '</div></div>';
-                    
-                    //Bucle para enlaces
-                    for(let i = 0; i < d.data.length; i++) {
-                        html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https://www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
-                    }
-                    document.getElementById('tooltip-content').innerHTML = html;
+            html += '</div></div>';
+            
+            //Bucle para enlaces
+            for(let i = 0; i < d.data.length; i++) {
+                html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https://www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
+            }
+            document.getElementById('tooltip-content').innerHTML = html;
 
-                    tooltip.classed('visible', true);
-                }                
-            });
+            tooltip.classed('visible', true);
+        }        
         
         //Países sin datos
         g.selectAll("country")
