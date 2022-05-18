@@ -124,7 +124,10 @@ d3.queue()
             for(let i = 0; i < d.data.length; i++) {
                 html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https://www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
             }
-            document.getElementById('tooltip-content').innerHTML = html;
+
+            setTimeout( function() {
+                document.getElementById('tooltip-content').innerHTML = html;
+            }, 500);            
         }        
         
         //Países sin datos
