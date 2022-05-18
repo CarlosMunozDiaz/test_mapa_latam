@@ -151,7 +151,6 @@ d3.queue()
             tooltip.classed('visible',false);
         }
 
-
         //Cuando se clique en la cruz de cierre, cerramos el tooltip
         document.getElementById('tooltip-close').addEventListener('click', function(e) {
             e.preventDefault();
