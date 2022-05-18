@@ -157,6 +157,8 @@ d3.queue()
             e.preventDefault();
             e.stopPropagation();
 
+            document.getElementById('tooltip-content').innerHTML = '';
+
             tooltip.classed('visible',false);
         });
     });
