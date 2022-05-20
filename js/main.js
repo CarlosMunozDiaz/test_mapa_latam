@@ -96,8 +96,6 @@ d3.queue()
             d3.event.preventDefault();
             d3.event.stopPropagation();
 
-            tooltip.classed('visible', true);
-
             //Tooltip
             let html = '';
 
@@ -130,7 +128,9 @@ d3.queue()
 
             setTimeout( function() {
                 document.getElementById('tooltip-content').innerHTML = html;
-            }, 500);            
+            }, 200);
+            
+            tooltip.classed('visible', true);
         }        
         
         //Países sin datos
