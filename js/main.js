@@ -1,6 +1,9 @@
 let tooltip = d3.select('#chartTooltip');
+
+let auxAspect = document.body.clientWidth < 400 ? 1.1 : document.body.clientWidth < 360 ? 1.5 : 1;
+
 let width = document.getElementById('map').clientWidth,
-    aspect = 1,
+    aspect = auxAspect,
     height = width * aspect;
 
 document.getElementById('map').style.height = height + 'px';
