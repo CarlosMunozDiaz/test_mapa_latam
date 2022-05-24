@@ -10,7 +10,7 @@ body {
 .container {
     width: 100%;
     max-width: 768px;
-    height: 618px; /* Dar más espacios para versiones móviles */
+    height: 656px; /* Dar más espacios para versiones móviles */
     margin: 0px auto;
 
     display: flex;
@@ -19,12 +19,12 @@ body {
 }
 
 .title {
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 600;
 }
 
 .subtitle {
-    font-size: 18px;
+    font-size: 17px;
     margin-top: 8px;
 }
 
@@ -145,6 +145,14 @@ body {
     cursor: pointer;
 }
 
+.chart__tooltip .chart__tooltip--close {
+    pointer-events: none;
+}
+
+.chart__tooltip.visible .chart__tooltip--close {
+    pointer-events: all;
+}
+
 .chart__tooltip--close img {
     max-width: 100%;
     height: auto;
@@ -197,28 +205,24 @@ body {
     margin-right: 6px;
 }
 
-.chart__tooltip--type.tipo1 {
-    background-color: ;
+.chart__tooltip--type.cuarta_revolucion_industrial {
+    background-color: #ffb81c;
 }
 
-.chart__tooltip--type.tipo1 {
-    background-color: #2E86AB;
+.chart__tooltip--type.envejecimiento {
+    background-color: #FF5200;
 }
 
-.chart__tooltip--type.tipo2 {
-    background-color: #F6F5AE;
+.chart__tooltip--type.cambio_climatico {
+    background-color: #80bd00;
 }
 
-.chart__tooltip--type.tipo3 {
-    background-color: #F24236;
+.chart__tooltip--type.diversidad {
+    background-color: #612e4f;
 }
 
-.chart__tooltip--type.tipo4 {
-    background-color: #73BFB8;
-}
-
-.chart__tooltip--type.tipo5 {
-    background-color: #F5F749;
+.chart__tooltip--type.covid19 {
+    background-color: #0099de;
 }
 
 .chart__tooltip_b-text {
@@ -233,6 +237,10 @@ body {
     color: #262626;
 
     margin-top: 4px;
+}
+
+.chart__tooltip--text a {
+    font-weight: 300;
 }
 
 /* SCROLLBAR */

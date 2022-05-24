@@ -1,15 +1,12 @@
 let tooltip = d3.select('#chartTooltip');
 
-let auxAspect = document.body.clientWidth < 400 ? 1.1 : document.body.clientWidth < 360 ? 1.5 : 1;
+let auxAspect = document.body.clientWidth < 400 ? 1.05: document.body.clientWidth < 360 ? 1.4 : 1;
 
 let width = document.getElementById('map').clientWidth,
     aspect = auxAspect,
     height = width * aspect;
 
 document.getElementById('map').style.height = height + 'px';
-
-//Colores
-const tipo1 = '', tipo2 = '', tipo3 = '', tipo4 = '', tipo5 = '';
 
 ///Desarrollo del mapa
 d3.queue()
@@ -76,11 +73,6 @@ d3.queue()
             .attr("stroke", "#f0f0f0");
 
         //Países con datos
-
-        let isMobile = window.matchMedia("only screen and (max-width: 820px)").matches;
-
-        console.log(isMobile);
-
         g.selectAll("country")
                 .data(laWith.features)
                 .enter()
@@ -105,6 +97,7 @@ d3.queue()
             //Bucle para sus tipos
             html += '<div class="chart__tooltip--b_types">';
             let tipos = d.data[0].tipos.split('|');
+            
             for(let i = 0; i < tipos.length; i++) {
                 if(tipos[i] == 'cuarta_revolucion_industrial'){
                     html += '<span class="chart__tooltip--type cuarta_revolucion_industrial"></span>';
@@ -128,7 +121,7 @@ d3.queue()
 
             setTimeout( function() {
                 document.getElementById('tooltip-content').innerHTML = html;
-            }, 200);
+            }, 150);
             
             tooltip.classed('visible', true);
         }        
@@ -154,6 +147,8 @@ d3.queue()
 
         function zoomed() {
             g.selectAll('path').attr('transform', d3.event.transform);
+
+            document.getElementById('tooltip-content').innerHTML = '';
             tooltip.classed('visible',false);
         }
 
@@ -163,7 +158,6 @@ d3.queue()
             e.stopPropagation();
 
             document.getElementById('tooltip-content').innerHTML = '';
-
             tooltip.classed('visible',false);
         });
     });
