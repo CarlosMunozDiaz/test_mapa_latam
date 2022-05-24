@@ -116,6 +116,7 @@ d3.queue()
             
             //Bucle para enlaces
             for(let i = 0; i < d.data.length; i++) {
+                console.log(d.data[i].link)
                 html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="' + d.data[i].link + '" target=_blank>Más información</a></div>';
             }
 
