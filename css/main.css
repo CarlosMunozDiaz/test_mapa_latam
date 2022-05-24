@@ -62,24 +62,24 @@ body {
     border-radius: 50%;
 }
 
-.legend--item.tipo1:before {
-    background-color: #2E86AB;
+.legend--item.cuarta_revolucion_industrial:before {
+    background-color: #FFB81C;
 }
 
-.legend--item.tipo2:before {
-    background-color: #F6F5AE;
+.legend--item.envejecimiento:before {
+    background-color: #FF5200;
 }
 
-.legend--item.tipo3:before {
-    background-color: #F24236;
+.legend--item.cambio_climatico:before {
+    background-color: #80bd00;
 }
 
-.legend--item.tipo4:before {
-    background-color: #73BFB8;
+.legend--item.diversidad:before {
+    background-color: #612e4f;
 }
 
-.legend--item.tipo5:before {
-    background-color: #F5F749;
+.legend--item.covid19:before {
+    background-color: #0099de;
 }
 
 /* MAPA */

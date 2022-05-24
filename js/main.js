@@ -14,7 +14,7 @@ const tipo1 = '', tipo2 = '', tipo3 = '', tipo4 = '', tipo5 = '';
 ///Desarrollo del mapa
 d3.queue()
     .defer(d3.json, 'https://raw.githubusercontent.com/CarlosMunozDiaz/test_mapa_latam/main/data/ne_110m_admin_0_countries_lakes.json')
-    .defer(d3.csv, 'https://raw.githubusercontent.com/CarlosMunozDiaz/test_mapa_latam/main/data/fichas_hxt.csv')
+    .defer(d3.csv, 'https://raw.githubusercontent.com/CarlosMunozDiaz/test_mapa_latam/main/data/fichas_tvet.csv')
     .await(function(error, mapa, data) {
         if(error) throw error; 
 
@@ -106,16 +106,16 @@ d3.queue()
             html += '<div class="chart__tooltip--b_types">';
             let tipos = d.data[0].tipos.split('|');
             for(let i = 0; i < tipos.length; i++) {
-                if(tipos[i] == 'tipo1'){
-                    html += '<span class="chart__tooltip--type tipo1"></span>';
-                } else if (tipos[i] == 'tipo2') {
-                    html += '<span class="chart__tooltip--type tipo2"></span>';
-                } else if (tipos[i] == 'tipo3') {
-                    html += '<span class="chart__tooltip--type tipo3"></span>';
-                } else if (tipos[i] == 'tipo4') {
-                    html += '<span class="chart__tooltip--type tipo4"></span>';
+                if(tipos[i] == 'cuarta_revolucion_industrial'){
+                    html += '<span class="chart__tooltip--type cuarta_revolucion_industrial"></span>';
+                } else if (tipos[i] == 'envejecimiento') {
+                    html += '<span class="chart__tooltip--type envejecimiento"></span>';
+                } else if (tipos[i] == 'cambio_climatico') {
+                    html += '<span class="chart__tooltip--type cambio_climatico"></span>';
+                } else if (tipos[i] == 'diversidad') {
+                    html += '<span class="chart__tooltip--type diversidad"></span>';
                 } else {
-                    html += '<span class="chart__tooltip--type tipo5"></span>';
+                    html += '<span class="chart__tooltip--type covid19"></span>';
                 }
             }
 
@@ -123,7 +123,7 @@ d3.queue()
             
             //Bucle para enlaces
             for(let i = 0; i < d.data.length; i++) {
-                html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="https://www.elconfidencial.com" target=_blank>Consulta aquí</a></div>';
+                html += '<div class="chart__tooltip_b-text"><p class="chart__tooltip--text" id="tooltip-text">' + d.data[i].Titulo_ES + '</p><a href="' + d.data[i].link + '" target=_blank>Más información</a></div>';
             }
 
             setTimeout( function() {
